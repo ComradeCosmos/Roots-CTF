@@ -1,0 +1,53 @@
+name: "Operation Cipherfall - Ep 05: The Double Agent's Dilemma"
+author: "Agent Vance / Operation Cipherfall"
+category: "Cryptography"
+description: >
+  ### Mission Intelligence
+
+  Two corrupt syndicate dispatchers were intercepted relaying emergency evacuation alerts across an encrypted frequency.
+  
+  They encrypted both transmissions using a One-Time Pad scheme. However, in their panic, they reused the **exact same keystream** for both messages!
+  
+  Because this message traffic was generated specifically during today's operation, it exists nowhere on the public internet—rendering LLM web-search scrapers useless.
+  
+  Our signals analyst confirmed that all standard operational alerts on this frequency begin with the known header prefix:
+  `OPERATION CIPHERFALL: `
+
+  ```
+  Ciphertext 1 (Hex):
+  293c24353a203e7f1154722463173566221e2f78547f2f74337d267f347211307146762e252d31223f5421791e546228700b3f66446f5715
+
+  Ciphertext 2 (Hex):
+  25232c2a3a3a33101c3b7f2b7a0d3d7120654378211c2513327c25114272133f1436762f2f2124333e26577116267d2270145073250b2615
+  ```
+
+  Use known-plaintext XOR and crib dragging to uncover the messages and expose their secret key!
+
+  ---
+  **Attachments:** Download `ciphertexts.txt` and `encrypt.py` below.
+value: 150
+type: standard
+state: visible
+
+flags:
+  - "flag{tw0_t1m3_p4d_c4n_n3v3r_b3_s4f3}"
+
+tags:
+  - crypto
+  - stream-cipher
+  - otp
+  - key-reuse
+  - two-time-pad
+  - easy
+
+hints:
+  - content: "A One-Time Pad is only secure if the key is used once. When key K is reused: C1 ^ C2 = P1 ^ P2."
+    cost: 0
+  - content: "You know the first 22 bytes of Message 1: 'OPERATION CIPHERFALL: '. XORing these known bytes with Ciphertext 1 immediately gives you the first 22 bytes of the flag!"
+    cost: 10
+  - content: "XOR C1[:22] with b'OPERATION CIPHERFALL: ' reveals 'flag{tw0_t1m3_p4d_c4n_'. Complete message 1 is 'OPERATION CIPHERFALL: AGENT VANCE ESCAPED VIA SECTOR 04!'."
+    cost: 25
+
+files:
+  - ciphertexts.txt
+  - encrypt.py

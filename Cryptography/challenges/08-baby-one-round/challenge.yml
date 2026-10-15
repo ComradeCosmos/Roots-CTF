@@ -1,0 +1,50 @@
+name: "Operation Cipherfall - Ep 08: Baby One-Round"
+author: "Agent Vance / Operation Cipherfall"
+category: "Cryptography"
+description: >
+  ### Mission Intelligence
+
+  *(Inspired by ECSC 2024 / CryptoHack: "It's just one round of encryption. How hard can it be?")*
+
+  To secure their final evacuation protocol, the syndicate developed a custom block cipher.
+  Believing their AES S-box, dual round keys, and bitwise nibble permutations would baffle forensic analyzers, they limited the cipher to **just one round**.
+  
+  Modern ciphers like AES require 10 to 14 rounds to resist cryptanalysis. A single round without iterative diffusion is completely reversible in reverse order!
+  
+  AI text models cannot trace bitwise nibble swaps and non-linear inverted S-box mappings in their head, but a human writing 10 lines of Python can undo each operation step-by-step!
+
+  ```
+  Ciphertext (Hex):
+  0d1c145b4209c604e3d68f393de1d20ebe1598a36ddb48cf56795f1369e1c1a352
+  ```
+
+  Can you trace the cipher in reverse and unlock their evacuation route?
+
+  ---
+  **Attachments:** Download `cipher.txt` and `chall.py` below.
+value: 250
+type: standard
+state: visible
+
+flags:
+  - "flag{spn_n1bbl3_sw4p_d3f34ts_llm}"
+
+tags:
+  - crypto
+  - block-cipher
+  - spn
+  - s-box
+  - ecsc2024
+  - easy
+
+hints:
+  - content: "A Substitution-Permutation Network (SPN) round consists of AddRoundKey, SubBytes, and Permutation. Decryption applies each inverse in reverse order."
+    cost: 0
+  - content: "Notice that swapping the high and low 4 bits (nibble swap) twice returns the original byte: swap_nibbles(swap_nibbles(b)) == b!"
+    cost: 10
+  - content: "Decryption steps: 1) XOR ciphertext with ROUND_KEY_1. 2) Apply swap_nibbles. 3) Map through INV_SBOX = {SBOX[i]: i for i in range(256)}. 4) XOR with ROUND_KEY_0."
+    cost: 25
+
+files:
+  - cipher.txt
+  - chall.py

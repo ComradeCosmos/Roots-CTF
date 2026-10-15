@@ -1,0 +1,46 @@
+name: "Operation Cipherfall - Ep 01: The Quantum Beacon"
+author: "Agent Vance / Operation Cipherfall"
+category: "Cryptography"
+description: >
+  ### Mission Intelligence
+
+  We intercepted an emergency beacon transmitted from Vance's comm-link across a quantum-fluctuating channel.
+  
+  The transmission officer noted that the beacon does not use standard 26-letter Caesar rotation. Instead, it utilizes an extended **Base-37 alphabet** (`abcdefghijklmnopqrstuvwxyz0123456789_`) with **alternating positional shifts**:
+  - For **even** indices $i$: shift forward by $(i + 7) \pmod{37}$
+  - For **odd** indices $i$: shift backward by $(i \times 3 + 5) \pmod{37}$
+  
+  *(Braces `{` and `}` are unshifted delimiters).*
+
+  Standard AI prompt engines fail because they assume classical mod-26 rotation, but a human analyst with 5 lines of Python can decode this in seconds!
+
+  ```
+  mdj3{tgd7989ete90r0e0isn_oorb}
+  ```
+
+  ---
+  **Attachment:** Download `cipher.txt` below.
+value: 50
+type: standard
+state: visible
+
+flags:
+  - "flag{c43s4r_w0uld_b3_c0nfus3d}"
+
+tags:
+  - crypto
+  - classical
+  - alternating-caesar
+  - base37
+  - easy
+
+hints:
+  - content: "The alphabet has 37 characters: 'abcdefghijklmnopqrstuvwxyz0123456789_'. Braces '{' and '}' are delimiters and not shifted."
+    cost: 0
+  - content: "To invert the encryption at index i: if i is even, subtract (i + 7) mod 37. If i is odd, add (i * 3 + 5) mod 37."
+    cost: 10
+  - content: "In Python: new_idx = (idx - (i + 7)) % 37 if i % 2 == 0 else (idx + (i * 3 + 5)) % 37. Then map back to the alphabet."
+    cost: 25
+
+files:
+  - cipher.txt

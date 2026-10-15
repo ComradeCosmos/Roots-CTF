@@ -1,0 +1,49 @@
+name: "Operation Cipherfall - Ep 03: The Intercepted Droid"
+author: "Agent Vance / Operation Cipherfall"
+category: "Cryptography"
+description: >
+  ### Mission Intelligence
+
+  We recovered telemetry logs from a downed recon droid.
+  The droid protected its message using an Affine Cipher, but with a twist that blinds standard AI decoders:
+  It operates over a **prime modulus of 37**!
+  
+  $$\text{Alphabet: } \texttt{abcdefghijklmnopqrstuvwxyz0123456789\_} \quad (m = 37)$$
+  $$E(x) = (a \cdot x + b) \pmod{37}$$
+
+  Because 37 is a prime number, **every single non-zero integer** $a \in [1, 36]$ has a valid modular inverse!
+  
+  The total keyspace is only $36 \times 37 = 1,332$ combinations. An automated AI solver will hallucinate on mod-26 assumptions, but a simple 8-line Python brute-force script will solve it in milliseconds!
+
+  ```
+  e7xp{hntv7uzmuzyk0hjkyimy_m_vdjzynz}
+  ```
+
+  ---
+  **Attachments:** Download `cipher.txt` and `affine.py` below.
+value: 100
+type: standard
+state: visible
+
+flags:
+  - "flag{m0dul4r_4r1thm3t1c_1s_sup3r10r}"
+
+tags:
+  - crypto
+  - classical
+  - affine
+  - base37
+  - modular-arithmetic
+  - easy
+
+hints:
+  - content: "The alphabet has 37 symbols (letters a-z, digits 0-9, and underscore). The delimiters '{' and '}' are unshifted."
+    cost: 0
+  - content: "Since 37 is prime, every a from 1 to 36 has a modular inverse: a_inv = pow(a, -1, 37). There are only 36 * 37 = 1332 total key pairs."
+    cost: 10
+  - content: "Test all pairs (a, b) in Python. The correct keys are a = 11, b = 23, with modular inverse pow(11, -1, 37) = 27."
+    cost: 25
+
+files:
+  - cipher.txt
+  - affine.py

@@ -1,0 +1,51 @@
+name: "Operation Cipherfall - Ep 06: Protocol DH-9000"
+author: "Agent Vance / Operation Cipherfall"
+category: "Cryptography"
+description: >
+  ### Mission Intelligence
+
+  The syndicate's primary command satellite synchronizes session keys using a protocol designated `DH-9000`.
+  
+  Our ground station intercepted the public handshake parameters:
+  ```
+  p = 19997
+  g = 5
+
+  A = 2058
+  B = 5125
+  ```
+
+  Once the shared secret $S = B^a \pmod p$ was computed, the satellite encrypted the directive using a key derived via SHA-256:
+  `Key = SHA256(str(S))`
+  `Encrypted Flag (Hex) = dcb3befd8907a8e142d9f6351d054d4c8f5810082a9600fba1259d9a115b57f1dea2`
+
+  Because $p$ is small ($p = 19,997$), calculating the discrete logarithm is instantaneous with a Python loop. An AI cannot calculate SHA-256 hashes or discrete logarithms mentally, but your Python script will unlock this in 10 milliseconds!
+
+  ---
+  **Attachments:** Download `params.txt` and `dh.py` below.
+value: 200
+type: standard
+state: visible
+
+flags:
+  - "flag{dh_d1scr3t3_l0g_brut3_f0rc3d}"
+
+tags:
+  - crypto
+  - asymmetric
+  - diffie-hellman
+  - discrete-log
+  - sha256
+  - easy
+
+hints:
+  - content: "Alice computed A = pow(g, a, p). Find Alice's secret 'a' by looping from 1 to 19997 and checking if pow(5, a, 19997) == 2058."
+    cost: 0
+  - content: "Once 'a' is found, compute the shared secret S = pow(B, a, p). Derive the AES/XOR key using hashlib.sha256(str(S).encode()).digest()."
+    cost: 10
+  - content: "Alice's secret is a = 13371, giving S = 18857. XOR the encrypted bytes with hashlib.sha256(b'18857').digest()."
+    cost: 25
+
+files:
+  - params.txt
+  - dh.py

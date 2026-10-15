@@ -1,0 +1,46 @@
+name: "Operation Cipherfall - Ep 02: Rendezvous in Paris"
+author: "Agent Vance / Operation Cipherfall"
+category: "Cryptography"
+description: >
+  ### Mission Intelligence
+
+  Operatives recovered an encrypted dispatch in Paris. The note bears a primer keyword: `PARIS`.
+  
+  Unlike standard Vigenère ciphers (which repeat the keyword endlessly and are easily cracked by statistical tools or AI), this dispatch was encrypted using the **Autokey Cipher**:
+  - The keystream begins with the primer: `P A R I S`
+  - After the primer, the keystream is dynamically fed by the **decrypted plaintext letters themselves**!
+  
+  $$K_i = \text{Primer}_i \quad (i < 5), \qquad K_i = P_{i-5} \quad (i \ge 5)$$
+  
+  Because the key never repeats, automated prompt tools hallucinate. But for a human, each recovered letter unlocks the key for subsequent letters!
+
+  ```
+  ulro{szeoqes_wspiyww_fm_pkgmxizbs}
+  ```
+
+  ---
+  **Attachment:** Download `cipher.txt` below.
+value: 100
+type: standard
+state: visible
+
+flags:
+  - "flag{autokey_defeats_ai_prompting}"
+
+tags:
+  - crypto
+  - classical
+  - autokey
+  - dynamic-keystream
+  - easy
+
+hints:
+  - content: "In an Autokey cipher, the key doesn't repeat. Instead, the plaintext characters are appended to the primer word to form the ongoing keystream."
+    cost: 0
+  - content: "Non-alphabetic characters (such as '{', '_', '}') are preserved and ignored in the key schedule. Decrypt letter by letter sequentially."
+    cost: 10
+  - content: "In Python: keep a list keystream = list('paris'). For each letter, p = (c - ord(keystream[k_idx]) + ord('a')) % 26, then keystream.append(chr(p + ord('a')))."
+    cost: 25
+
+files:
+  - cipher.txt

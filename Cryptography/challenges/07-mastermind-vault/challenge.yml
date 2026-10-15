@@ -1,0 +1,47 @@
+name: "Operation Cipherfall - Ep 07: The Mastermind's Vault"
+author: "Agent Vance / Operation Cipherfall"
+category: "Cryptography"
+description: >
+  ### Mission Intelligence
+
+  We breached the underground datacenter housing the syndicate's mastermind server.
+  The server key is protected by RSA-512 with modulus $N = p \times q$.
+  
+  During forensic extraction of the key generation script logs, we couldn't find the individual primes $p$ and $q$, but we found their combined sum:
+  $$S = p + q$$
+  
+  Large language models fail to solve this directly because calculating 512-bit integer square roots without code execution results in arithmetic hallucination.
+  
+  However, for a human cryptanalyst with Python, this is simple high-school algebra:
+  $$(p - q)^2 = (p + q)^2 - 4N$$
+  
+  Calculate the exact prime factors, find the private key $d$, and decrypt the mastermind's vault!
+
+  ---
+  **Attachments:** Download `rsa.txt` and `encrypt.py` below.
+value: 200
+type: standard
+state: visible
+
+flags:
+  - "flag{qu4dr4t1c_f0rmul4_br34ks_sum_rs4}"
+
+tags:
+  - crypto
+  - asymmetric
+  - rsa
+  - quadratic-formula
+  - integer-algebra
+  - easy
+
+hints:
+  - content: "You know N = p * q and S = p + q. In algebra, (p - q)^2 = (p + q)^2 - 4*N."
+    cost: 0
+  - content: "Use Python's built-in math.isqrt(S * S - 4 * N) to compute the exact difference: diff = p - q. Then p = (S + diff) // 2 and q = S - p."
+    cost: 10
+  - content: "Once p and q are separated: phi = (p - 1)*(q - 1), d = pow(e, -1, phi), and m = pow(c, d, N). Convert m to ASCII."
+    cost: 25
+
+files:
+  - rsa.txt
+  - encrypt.py
