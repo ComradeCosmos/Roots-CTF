@@ -1,0 +1,8 @@
+Public Prime Modulus (p): 19997
+Public Generator Base (g): 5
+
+Alice Public Key (A): 2058
+Bob Public Key (B): 5125
+
+Encrypted Flag (Hex):
+e8b0b0ee8118a4d6798cb4250c440a0be36b4c5f12ab10fca062f1a3471946a189bba2

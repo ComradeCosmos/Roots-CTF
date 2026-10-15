@@ -1,0 +1,48 @@
+name: "Civilization: The Diplomat's Oath"
+author: "Civilization CTF"
+category: "Cryptography"
+description: >
+  ### Historical Story: Secret Messengers
+
+  As towns grew into countries, rulers needed to send secret messages across long distances. Simple ciphers that repeated the same secret password were too easy for enemy spies to break.
+
+  In 1789, a messenger carried a secret letter to Paris. It was protected by an **Autokey Cipher**:
+  - The secret key begins with a starting word: `PARIS` (5 letters).
+  - After that, the key is made directly from the **hidden message itself**!
+
+  $$K_i = \text{Primer}_i \quad (i < 5), \qquad K_i = P_{i-5} \quad (i \ge 5)$$
+
+  Because the key never repeats, each letter you solve unlocks the key for the next letter.
+
+  ```
+  Gofbk{rihhces_wspiyww_fm_pkgmxizbs}
+  ```
+
+  Can you decrypt the messenger's letter?
+
+  ---
+  **Attachment:** Download `cipher.txt` below.
+value: 100
+type: standard
+state: visible
+
+flags:
+  - "Roots{autokey_defeats_ai_prompting}"
+
+tags:
+  - civilization
+  - messengers
+  - autokey
+  - dynamic-keystream
+  - easy
+
+hints:
+  - content: "The starting word 'PARIS' decrypts the first 5 letters. After that, each letter you uncover is added to the key list to unlock future letters."
+    cost: 0
+  - content: "Characters like '{', '_', and '}' are left alone and skipped by the key. Decrypt one letter at a time from left to right."
+    cost: 10
+  - content: "In Python: keep a list keystream = list('paris'). For each letter: p = (ord(c.lower()) - ord(keystream[k_idx])) % 26, then keystream.append(chr(p + ord('a')))."
+    cost: 25
+
+files:
+  - cipher.txt

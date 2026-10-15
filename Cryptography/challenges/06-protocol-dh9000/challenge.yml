@@ -1,0 +1,54 @@
+name: "Civilization: The Vanguard Satellite"
+author: "Civilization CTF"
+category: "Cryptography"
+description: >
+  ### Historical Story: The Early Space Age
+
+  In the 20th century, civilization reached into space. Two scientific satellites orbiting on opposite sides of Earth needed to agree on a secret key over open radio signals without enemy ground stations stealing it.
+
+  They used the **Diffie-Hellman Key Exchange** with small numbers:
+  - Prime modulus: $p = 19997$
+  - Base number: $g = 5$
+  - Alice public key: $A = 2058$ ($g^a \pmod{p}$)
+  - Bob public key: $B = 5125$ ($g^b \pmod{p}$)
+
+  Once Alice found her secret number $a$, the satellites computed their shared secret number:
+  $$S = B^a \pmod{p}$$
+  
+  They converted $S$ to text and hashed it with SHA-256 to create the encryption key: $\text{Key} = \text{SHA256}(\text{str}(S))$.
+
+  ```
+  Encrypted Flag (Hex) = e8b0b0ee8118a4d6798cb4250c440a0be36b4c5f12ab10fca062f1a3471946a189bba2
+  ```
+
+  Because $p = 19997$ is small, you can find Alice's secret number $a$ with a simple Python loop from 1 to 19997!
+
+  ---
+  **Attachments:** Download `params.txt` and `dh.py` below.
+value: 200
+type: standard
+state: visible
+
+flags:
+  - "Roots{dh_d1scr3t3_l0g_brut3_f0rc3d}"
+
+tags:
+  - civilization
+  - space-satellites
+  - asymmetric
+  - diffie-hellman
+  - discrete-log
+  - sha256
+  - easy
+
+hints:
+  - content: "Alice computed A = pow(5, a, 19997) == 2058. Loop through all numbers a from 1 to 19997 in Python until you find the match."
+    cost: 0
+  - content: "Once you have Alice's secret a, calculate shared secret S = pow(B, a, p). Turn S into bytes: key = hashlib.sha256(str(S).encode()).digest()."
+    cost: 10
+  - content: "Alice's secret is a = 13371, giving S = 18857. XOR the encrypted hex bytes with hashlib.sha256(b'18857').digest()."
+    cost: 25
+
+files:
+  - params.txt
+  - dh.py

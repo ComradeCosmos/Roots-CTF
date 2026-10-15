@@ -1,0 +1,51 @@
+name: "Civilization: The Sentry's Clockwork"
+author: "Civilization CTF"
+category: "Cryptography"
+description: >
+  ### Historical Story: The Imperial Gate
+
+  Towns grew into massive empires — too big for one person to watch alone. Rulers had to trust guards they would never meet, guarding fortress gates they could never personally check.
+
+  At an ancient stone fortress, an automated bronze clockwork machine was built to generate daily passcodes for the sentry guards. It used a simple math formula called an LCG:
+
+  $$S_{i+1} = (137 \cdot S_i + 73) \pmod{256}$$
+  $$C_i = P_i \oplus S_i$$
+
+  The entire machine was started with a single 8-bit seed number ($S_0$), which is just an integer between 0 and 255.
+
+  Whoever built the machine thought 256 combinations was enough to keep the gates safe. Write a quick Python script to test all 256 starting seeds and unlock the sentry's message!
+
+  ```
+  Ciphertext (Hex):
+  78accb794d0c9462b5f4bc0788387f1a0ea780eed12e3b8e564b2c1a45424455a61e
+  ```
+
+  ---
+  **Attachments:** Download `cipher.txt` and `xor.py` below.
+value: 150
+type: standard
+state: visible
+
+flags:
+  - "Roots{lcg_prng_st4t3_is_t00_sm4ll}"
+
+tags:
+  - civilization
+  - ancient-empires
+  - symmetric
+  - prng
+  - lcg
+  - brute-force
+  - easy
+
+hints:
+  - content: "The clockwork steps through numbers using S_{i+1} = (137 * S_i + 73) mod 256. The seed S_0 is a single number from 0 to 255."
+    cost: 0
+  - content: "You know the flag starts with 'Roots{'. Loop through all 256 possible seeds in Python and see which one decrypts to readable text."
+    cost: 10
+  - content: "The starting seed is 42. Start with state = 42, generate the numbers, and XOR each byte with the ciphertext bytes."
+    cost: 25
+
+files:
+  - cipher.txt
+  - xor.py

@@ -1,0 +1,51 @@
+name: "Civilization: The Granary Ledger"
+author: "Civilization CTF"
+category: "Cryptography"
+description: >
+  ### Historical Story: The First Walled Towns
+
+  People started living together in towns. Towns needed trust — so they built walls, made promises, and kept records of who owed what to whom.
+
+  In the ruins of an ancient town's grain storehouse, you find an old tax record carved on a clay tablet. The town accountant scrambled the message using a simple math rule over a 37-symbol alphabet:
+  
+  $$\text{Alphabet: } \texttt{abcdefghijklmnopqrstuvwxyz0123456789\_} \quad (m = 37)$$
+  $$E(x) = (a \cdot x + b) \pmod{37}$$
+
+  Because 37 is a prime number, every multiplier $a$ from 1 to 36 has an exact reverse match (modular inverse).
+
+  There are only $36 \times 37 = 1,332$ possible key pairs $(a, b)$. A short Python script can test every single pair in less than a second!
+
+  ```
+  Z33k_{hntv7uzmuzyk0hjkyimy_m_vdjzynz}
+  ```
+
+  Can you find the right keys and read the ledger?
+
+  ---
+  **Attachments:** Download `cipher.txt` and `affine.py` below.
+value: 100
+type: standard
+state: visible
+
+flags:
+  - "Roots{m0dul4r_4r1thm3t1c_1s_sup3r10r}"
+
+tags:
+  - civilization
+  - ancient-towns
+  - affine
+  - base37
+  - modular-arithmetic
+  - easy
+
+hints:
+  - content: "The alphabet has 37 symbols: letters a-z, numbers 0-9, and the underscore '_'. Braces '{' and '}' are not changed."
+    cost: 0
+  - content: "Because 37 is prime, every number a from 1 to 36 can be inverted with Python: a_inv = pow(a, -1, 37). Loop through all 1,332 combinations of a and b."
+    cost: 10
+  - content: "The secret keys are a = 11 and b = 23. Invert it using pow(11, -1, 37) = 27: calculate x = (27 * (y - 23)) % 37 for each character."
+    cost: 25
+
+files:
+  - cipher.txt
+  - affine.py
