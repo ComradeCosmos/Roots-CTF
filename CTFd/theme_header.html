@@ -1,0 +1,272 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+
+<script>
+// Force dark theme and calibrate ECharts
+try {
+  localStorage.setItem('theme', 'dark');
+  document.documentElement.setAttribute('data-bs-theme', 'dark');
+} catch (e) {}
+
+// Calibrate ECharts:
+// 1. Grid top: 95 ensures score lines and data points never collide with the zoom slider
+// 2. Toolbox restore: provides dedicated "Reset Zoom" feature to reset both box zoom and slider zoom
+// 3. Styled dataZoom slider with emerald theme palette
+window.scoreboardChartOptions = {
+  grid: {
+    top: 95,
+    bottom: 60,
+    containLabel: true
+  },
+  toolbox: {
+    iconStyle: {
+      borderColor: "#8E96A4"
+    },
+    feature: {
+      restore: {
+        title: "Reset Zoom"
+      }
+    }
+  },
+  dataZoom: [
+    {
+      top: 38,
+      height: 22,
+      fillerColor: "rgba(63, 198, 124, 0.25)",
+      borderColor: "rgba(255, 255, 255, 0.15)"
+    }
+  ]
+};
+</script>
+
+<style>
+/* =========================================================
+   CIVILIZATION — CTFd Theme (Charcoal & Emerald)
+   Seamless Canvas, Clean Scoreboard Graph, Balanced Logo
+   ========================================================= */
+
+:root {
+  --canvas-bg: #14171E;
+  --surface-bg: #1B202A;
+  --surface-border: rgba(255, 255, 255, 0.08);
+  --brand-green: #2FA866;
+  --brand-green-bright: #3FC67C;
+  --brand-gold: #D4A94C;
+  --brand-rust: #C1552C;
+  --text-main: #F0F2F5;
+  --text-muted: #8E96A4;
+
+  --bs-body-bg: var(--canvas-bg) !important;
+  --bs-body-color: var(--text-main) !important;
+  --bs-tertiary-bg: var(--surface-bg) !important;
+  --bs-secondary-bg: var(--surface-bg) !important;
+  --bs-border-color: var(--surface-border) !important;
+}
+
+/* 1. Global Background */
+html, body, main, .container {
+  background-color: var(--canvas-bg) !important;
+  color: var(--text-main) !important;
+  font-family: 'DM Mono', monospace !important;
+  font-weight: 300;
+}
+
+body {
+  background-image: 
+    radial-gradient(circle at 50% 0%, rgba(63, 198, 124, 0.07), transparent 45%),
+    radial-gradient(circle at 85% 30%, rgba(212, 169, 76, 0.04), transparent 40%) !important;
+  background-attachment: fixed !important;
+}
+
+h1, h2, h3, h4, h5, h6,
+.navbar-brand, .page-title, .card-header, .modal-title, .jumbotron h1 {
+  font-family: 'Space Grotesk', sans-serif !important;
+  letter-spacing: -0.01em;
+}
+
+a { color: var(--brand-green-bright); text-decoration: none; }
+a:hover { color: var(--brand-gold); }
+
+/* 2. Fixed & Balanced Navbar */
+.navbar, nav.navbar {
+  background-color: rgba(20, 23, 30, 0.96) !important;
+  border-bottom: 1px solid var(--surface-border) !important;
+  backdrop-filter: blur(12px) !important;
+  min-height: 64px !important;
+  padding: 6px 0 !important;
+  box-shadow: none !important;
+}
+
+.navbar-brand {
+  display: inline-flex !important;
+  align-items: center !important;
+  padding: 0 !important;
+  margin-right: 18px !important;
+  height: 100% !important;
+}
+
+/* Clean, crisp logo fitted comfortably inside the navbar without sticking out */
+.navbar-brand .ctf_logo {
+  height: 42px !important;
+  max-height: 44px !important;
+  width: auto !important;
+  object-fit: contain;
+  display: block !important;
+  margin: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  filter: none !important;
+  transition: transform 0.2s ease;
+}
+
+.navbar-brand:hover .ctf_logo {
+  transform: scale(1.05);
+}
+
+.nav-link { color: var(--text-muted) !important; font-weight: 500; }
+.nav-link:hover, .nav-link.active { color: var(--brand-green-bright) !important; }
+
+/* 3. Transparent Header Title */
+.jumbotron {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 2.5rem 0 1rem 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.jumbotron h1 {
+  color: #FFFFFF !important;
+  font-size: 2.6rem !important;
+  font-weight: 700 !important;
+  text-align: center;
+  text-shadow: 0 0 30px rgba(63, 198, 124, 0.2);
+}
+
+hr {
+  border-color: var(--surface-border) !important;
+  opacity: 0.4 !important;
+  margin: 1.5rem 0 !important;
+}
+
+/* 4. Scoreboard Graph Container */
+#score-graph {
+  min-height: 420px !important;
+  width: 100% !important;
+  margin-bottom: 2rem !important;
+}
+
+/* 5. Search Controls */
+.form-control, .form-select, input[type="text"], input[type="password"], textarea {
+  background-color: var(--surface-bg) !important;
+  border: 1px solid var(--surface-border) !important;
+  color: #FFFFFF !important;
+  border-radius: 6px !important;
+  font-family: 'DM Mono', monospace !important;
+  padding: 10px 14px !important;
+}
+
+::placeholder, ::-webkit-input-placeholder, ::-moz-placeholder {
+  color: var(--text-muted) !important;
+  opacity: 1 !important;
+}
+
+.form-control:focus, .form-select:focus, input:focus, textarea:focus {
+  background-color: #212734 !important;
+  border-color: var(--brand-green-bright) !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 0 0 3px rgba(63, 198, 124, 0.2) !important;
+}
+
+/* 6. Scoreboard & General Tables */
+table, .table {
+  background-color: var(--surface-bg) !important;
+  color: var(--text-main) !important;
+  border: 1px solid var(--surface-border) !important;
+  border-radius: 8px !important;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25) !important;
+}
+
+.table thead th {
+  background-color: #181D26 !important;
+  color: var(--brand-green-bright) !important;
+  font-family: 'Space Grotesk', sans-serif !important;
+  font-weight: 600;
+  border-bottom: 2px solid rgba(63, 198, 124, 0.5) !important;
+  padding: 14px 18px !important;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: rgba(255, 255, 255, 0.015) !important;
+}
+
+.table-striped tbody tr:nth-of-type(even) {
+  background-color: transparent !important;
+}
+
+.table td, .table th {
+  border-bottom: 1px solid var(--surface-border) !important;
+  color: var(--text-main) !important;
+  padding: 14px 18px !important;
+}
+
+/* 7. Cards & Modals */
+.card, .modal-content {
+  background-color: var(--surface-bg) !important;
+  border: 1px solid var(--surface-border) !important;
+  color: var(--text-main) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35) !important;
+}
+
+.card-header, .modal-header {
+  background-color: #181D26 !important;
+  border-bottom: 1px solid var(--surface-border) !important;
+}
+
+.modal-header .modal-title { color: var(--brand-green-bright) !important; }
+
+/* Modal Alerts & Challenge Ratings */
+.modal-body .alert, .notification-row .alert {
+  background-color: #181D26 !important;
+  border: 1px solid var(--surface-border) !important;
+  color: var(--text-main) !important;
+  border-radius: 6px !important;
+}
+
+.modal-body .alert-info, .notification-row .alert-info {
+  background-color: rgba(56, 139, 253, 0.1) !important;
+  border-color: #388BFD !important;
+  color: #58A6FF !important;
+}
+
+/* 8. Buttons */
+.btn-primary {
+  background-color: var(--brand-green) !important;
+  border-color: var(--brand-green) !important;
+  color: #14171E !important;
+  font-family: 'Space Grotesk', sans-serif !important;
+  font-weight: 700 !important;
+  border-radius: 6px !important;
+}
+
+.btn-primary:hover {
+  background-color: var(--brand-green-bright) !important;
+  border-color: var(--brand-green-bright) !important;
+  color: #14171E !important;
+}
+
+/* Solved Challenges */
+.challenge-solved, .solved-challenge, .card.solved {
+  border-color: var(--brand-green-bright) !important;
+  box-shadow: 0 0 0 1px var(--brand-green-bright) inset !important;
+}
+
+/* Scrollbars */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--canvas-bg); }
+::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.15); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--brand-green-bright); }
+</style>
