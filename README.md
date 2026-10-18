@@ -16,9 +16,10 @@ A turnkey, production-ready [CTFd](https://ctfd.io/) instance pre-configured for
   - **Toolbox Zoom & Restore**: Box-zoom into specific time intervals, step-back undo, and a dedicated **Reset Zoom** (`restore`) button.
   - Calibrated grid positioning (`top: 95px`, slider at `top: 38px`) so the zoom slider never collides with score lines or data points.
 - **Pre-Configured Database (`ctfd.db`)**:
-  - CTF name, user mode (`teams`), public scoreboard, and credentials already initialized.
-  - Admin team & user: `Cosmos`.
-  - Challenge review, scoring, and ratings system enabled.
+  - Competition name (`RootsCTF`), team mode, and public scoreboard pre-configured.
+  - Custom Charcoal & Emerald theme and transparent logo embedded.
+  - Challenge review, scoring, and rating systems enabled.
+  - Fresh scoreboard with zero prior test submissions or user solves.
 - **Cryptography Challenge Suite (`Cryptography/`)**:
   - Full set of civilization-themed challenges with position-dependent ciphers, historical narratives, hints, flag keys (`Roots{...}`), and automated setup script (`setup_ctfd.py`).
 
@@ -81,7 +82,7 @@ Access at `http://localhost:8000`.
 ```
 ├── CTFd/
 │   ├── CTFd/
-│   │   ├── ctfd.db             # Pre-configured SQLite database (theme, users, scores, settings)
+│   │   ├── ctfd.db             # Pre-configured SQLite database (theme, challenges, clean scoreboard)
 │   │   ├── uploads/             # Custom transparent logo and challenge file attachments
 │   │   └── themes/core/         # Core theme templates & assets
 │   ├── apply_theme.py           # Script to re-apply the Civilization theme to the database
@@ -98,10 +99,3 @@ Access at `http://localhost:8000`.
 ├── start.sh                     # Linux/macOS 1-click server launcher
 └── README.md
 ```
-
----
-
-## 🔑 Default Credentials
-- **Admin User**: `Cosmos` (`dhyeymendpara72@gmail.com`)
-- **Admin Team**: `Cosmos`
-- **CTFd Port**: `8000`

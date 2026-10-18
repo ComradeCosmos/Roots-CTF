@@ -3,12 +3,10 @@ from CTFd.models import db, Configs, Users, Teams
 
 app = create_app()
 with app.app_context():
-    # 1. Ensure user and team are unhidden for scoreboard
-    u = Users.query.filter_by(name='Cosmos').first()
-    if u:
+    # 1. Ensure admin accounts and teams are visible
+    for u in Users.query.all():
         u.hidden = False
-    t = Teams.query.filter_by(id=1).first()
-    if t:
+    for t in Teams.query.all():
         t.hidden = False
 
     # 2. Revert to original Dark Civilization Theme with zoom calibration
