@@ -73,6 +73,10 @@ export function getOption(mode, places, optionMerge) {
     let scores = times.map(function (e, i) {
       return [e, total_scores[i]];
     });
+    if (scores.length > 0) {
+      scores.unshift([new Date(scores[0][0].getTime() - 1000), 0]);
+      scores.push([new Date(), total_scores[total_scores.length - 1]]);
+    }
 
     option.legend.data.push(places[teams[i]]["name"]);
 
