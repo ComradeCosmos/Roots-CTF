@@ -1,24 +1,25 @@
 name: "Civilization: The Sentry's Clockwork"
-author: "Civilization CTF"
+author: "FlagFall CTF"
 category: "Cryptography"
 description: >
-  ### Historical Story: The Imperial Gate
+  ### Historical Story: The Age of Mechanical Automata
 
-  Towns grew into massive empires — too big for one person to watch alone. Rulers had to trust guards they would never meet, guarding fortress gates they could never personally check.
+  In medieval clock towers and Renaissance workshops, engineers built mechanical automatons — geared mechanisms that mimicked life and guarded fortress gates.
 
-  At an ancient stone fortress, an automated bronze clockwork machine was built to generate daily passcodes for the sentry guards. It used a simple math formula called an LCG:
-
+  A clockwork sentinel guards the archive gates. Its internal gear recurrence generates a stream of bytes using a Linear Congruential Generator:
   $$S_{i+1} = (137 \cdot S_i + 73) \pmod{256}$$
+
+  Each secret byte of the royal decree was masked via XOR with the clockwork output:
   $$C_i = P_i \oplus S_i$$
 
-  The entire machine was started with a single 8-bit seed number ($S_0$), which is just an integer between 0 and 255.
+  The initial bronze gear position $S_0$ is an 8-bit value $(0 \le S_0 \le 255)$.
 
-  Whoever built the machine thought 256 combinations was enough to keep the gates safe. Write a quick Python script to test all 256 starting seeds and unlock the sentry's message!
+  Intercepted transmission:
+  ```
+  4cafc56a5816946da9c7af12b92f52071dcc87a9ba337b8e4b084331061f2f4aa75728c1a3
+  ```
 
-  ```
-  Ciphertext (Hex):
-  78accb794d0c9462b5f4bc0788387f1a0ea780eed12e3b8e564b2c1a45424455a61e
-  ```
+  Can you rewind the clockwork and unlock the gate?
 
   ---
   **Attachments:** Download `cipher.txt` and `xor.py` below.
@@ -27,7 +28,7 @@ type: standard
 state: visible
 
 flags:
-  - "Roots{lcg_prng_st4t3_is_t00_sm4ll}"
+  - "flagfall{lcg_prng_st4t3_is_t00_sm4ll}"
 
 tags:
   - civilization
@@ -39,13 +40,13 @@ tags:
   - easy
 
 hints:
-  - content: "The clockwork steps through numbers using S_{i+1} = (137 * S_i + 73) mod 256. The seed S_0 is a single number from 0 to 255."
+  - content: "The seed space is only 1 byte (0 to 255). An 8-bit state means there are only 256 possible keystreams in the entire universe!"
     cost: 0
-  - content: "You know the flag starts with 'Roots{'. Loop through all 256 possible seeds in Python and see which one decrypts to readable text."
+  - content: "You know the flag starts with 'flagfall{'. Loop through all 256 possible seeds in Python and see which one decrypts to readable text."
     cost: 10
-  - content: "The starting seed is 42. Start with state = 42, generate the numbers, and XOR each byte with the ciphertext bytes."
+  - content: "In Python: for seed in range(256): test decryption. Seed 42 produces the valid flag!"
     cost: 25
 
 files:
-  - cipher.txt
-  - xor.py
+  - "cipher.txt"
+  - "xor.py"

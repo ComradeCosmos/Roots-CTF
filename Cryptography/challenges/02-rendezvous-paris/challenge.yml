@@ -1,24 +1,19 @@
 name: "Civilization: The Diplomat's Oath"
-author: "Civilization CTF"
+author: "FlagFall CTF"
 category: "Cryptography"
 description: >
-  ### Historical Story: Secret Messengers
+  ### Historical Story: Envoys Across Borders
 
-  As towns grew into countries, rulers needed to send secret messages across long distances. Simple ciphers that repeated the same secret password were too easy for enemy spies to break.
+  As early empires grew, kings could no longer shout across valleys. Messengers rode day and night across continents carrying secret treaties. If a message was intercepted, war would follow.
 
-  In 1789, a messenger carried a secret letter to Paris. It was protected by an **Autokey Cipher**:
-  - The secret key begins with a starting word: `PARIS` (5 letters).
-  - After that, the key is made directly from the **hidden message itself**!
+  In the 16th century, diplomat Blaise de Vigenère created a cipher that baffled European cryptanalysts for centuries: the **Autokey cipher**. Instead of repeating a short codeword, the message itself becomes the continuing secret key!
 
-  $$K_i = \text{Primer}_i \quad (i < 5), \qquad K_i = P_{i-5} \quad (i \ge 5)$$
-
-  Because the key never repeats, each letter you solve unlocks the key for the next letter.
-
+  An intercepted royal dispatch carried to Paris was encrypted with the primer word **`PARIS`**:
   ```
-  Gofbk{rihhces_wspiyww_fm_pkgmxizbs}
+  ulroxfwl{gztzves_wspiyww_fm_pkgmxizbs}
   ```
 
-  Can you decrypt the messenger's letter?
+  Can you retrace the courier's steps and decode the diplomat's secret oath?
 
   ---
   **Attachment:** Download `cipher.txt` below.
@@ -27,7 +22,7 @@ type: standard
 state: visible
 
 flags:
-  - "Roots{autokey_defeats_ai_prompting}"
+  - "flagfall{autokey_defeats_ai_prompting}"
 
 tags:
   - civilization
@@ -37,12 +32,12 @@ tags:
   - easy
 
 hints:
-  - content: "The starting word 'PARIS' decrypts the first 5 letters. After that, each letter you uncover is added to the key list to unlock future letters."
+  - content: "The primer word is 'PARIS'. The first 5 encrypted letters use P-A-R-I-S as the key. Each decrypted letter then becomes the key for the subsequent letters!"
     cost: 0
-  - content: "Characters like '{', '_', and '}' are left alone and skipped by the key. Decrypt one letter at a time from left to right."
+  - content: "You cannot decrypt this in parallel. You must decrypt letter-by-letter sequentially because each plaintext character extends the keystream."
     cost: 10
-  - content: "In Python: keep a list keystream = list('paris'). For each letter: p = (ord(c.lower()) - ord(keystream[k_idx])) % 26, then keystream.append(chr(p + ord('a')))."
+  - content: "In Python: p_char = chr(((ord(c) - ord('a')) - (ord(k) - ord('a'))) % 26 + ord('a')), then keystream.append(p_char)."
     cost: 25
 
 files:
-  - cipher.txt
+  - "cipher.txt"

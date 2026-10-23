@@ -1,8 +1,10 @@
-Public Prime Modulus (p): 19997
-Public Generator Base (g): 5
+Diffie-Hellman Group Parameters:
+p = 19997
+g = 5
 
-Alice Public Key (A): 2058
-Bob Public Key (B): 5125
+Public Keys:
+A = 2058 (Alice's Public Key)
+B = 5125 (Bob's Public Key)
 
-Encrypted Flag (Hex):
-e8b0b0ee8118a4d6798cb4250c440a0be36b4c5f12ab10fca062f1a3471946a189bba2
+Encrypted Transmission (Hex):
+dcb3befd9402acd25d8ced090b074a1ca207545c2a9842e98a74b089551a6ba48aadbca9961e

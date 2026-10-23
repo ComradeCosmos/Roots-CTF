@@ -1,28 +1,21 @@
 name: "Civilization: The Transatlantic Cable"
-author: "Civilization CTF"
+author: "FlagFall CTF"
 category: "Cryptography"
 description: >
-  ### Historical Story: The Undersea Cable
+  ### Historical Story: The Victorian Telegraph & Wire Taps
 
-  In the late industrial age, long copper cables were laid across the bottom of the ocean to connect continents by telegraph. To send secret dispatches, military stations used a **One-Time Pad** — a stream of random key bytes.
+  In 1858, engineers laid copper cables across the Atlantic Ocean floor. For the first time in human history, news traveled faster than steamships. But with electric telegraphs came wiretaps.
 
-  A One-Time Pad is mathematically impossible to break, but only if the key is used **once**. During an emergency, a nervous telegraph operator made a critical mistake: they reused the **exact same key tape** to encrypt two different messages!
+  To guarantee secrecy, military telegraphers used the **One-Time Pad** — mathematically unbreakable, but only if the key is used once.
 
-  When a key is reused:
-  $$C_1 \oplus C_2 = P_1 \oplus P_2$$
+  A rogue telegrapher reused the same keystream to transmit two critical messages across the ocean cable:
+  - **Message 1** is an operational report known to start with:
+    `"OPERATION CIPHERFALL: "`
+  - **Message 2** is a confidential order.
 
-  Standard operational alerts on this telegraph line always begin with the known header prefix:
-  `OPERATION CIPHERFALL: `
+  Because $C_1 \oplus C_2 = P_1 \oplus P_2$, the shared key can be completely exposed!
 
-  ```
-  Ciphertext 1 (Hex):
-  1d3f2a26322f3d387e7f37783d7b1a227225132f0e4e1e297638675209237d1c361423603e133f2a30532d3d36100c3172397c0d5004507e
-
-  Ciphertext 2 (Hex):
-  112022393235305773103a7724611235705e7f2f7b2d144e7739643c7f237f1353642361341f2a3b31215b353e62133b722613183160217e
-  ```
-
-  Use XOR with the known starting words to reveal the key and uncover the secret messages!
+  Can you tap the wire and recover the secret key?
 
   ---
   **Attachments:** Download `ciphertexts.txt` and `encrypt.py` below.
@@ -31,7 +24,7 @@ type: standard
 state: visible
 
 flags:
-  - "Roots{tw0_t1m3_p4d_c4n_n3v3r_b3_s4f3}"
+  - "flagfall{tw0_t1m3_p4d_c4n_n3v3r_b3_s4f3}"
 
 tags:
   - civilization
@@ -43,13 +36,11 @@ tags:
   - easy
 
 hints:
-  - content: "A One-Time Pad is only secure if the key is never reused. When key K is reused on two messages: C1 ^ C2 = P1 ^ P2."
+  - content: "When a One-Time Pad key is reused, XORing the two ciphertexts cancels the key: C1 ^ C2 = P1 ^ P2."
     cost: 0
-  - content: "You know Message 1 begins with b'OPERATION CIPHERFALL: ' (22 bytes). XORing these bytes with Ciphertext 1 reveals the first 22 bytes of the flag!"
-    cost: 10
-  - content: "XOR C1[:22] with b'OPERATION CIPHERFALL: ' reveals 'Roots{tw0_t1m3_p4d_c4'. Complete message 1 is 'OPERATION CIPHERFALL: AGENT VANCE ESCAPED VIA SECTOR 04!'."
+  - content: "XOR C1[:22] with b'OPERATION CIPHERFALL: ' reveals 'flagfall{tw0_t1m3_p4'. Complete message 1 is 'OPERATION CIPHERFALL: AGENT VANCE ESCAPED VIA SECTOR 04!'."
     cost: 25
 
 files:
-  - ciphertexts.txt
-  - encrypt.py
+  - "ciphertexts.txt"
+  - "encrypt.py"

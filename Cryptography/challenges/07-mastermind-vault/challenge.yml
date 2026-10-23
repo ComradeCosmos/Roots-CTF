@@ -1,21 +1,18 @@
 name: "Civilization: The Digital Gold Vault"
-author: "Civilization CTF"
+author: "FlagFall CTF"
 category: "Cryptography"
 description: >
-  ### Historical Story: The Digital Gold Vault
+  ### Historical Story: The Birth of Digital Commerce & Banking
 
-  As civilization moved from gold coins to computers, banks needed a way to lock vaults using math instead of physical keys.
+  In the late 20th century, money turned into digital pulses. Central banks and stock exchanges built subterranean data centers secured by the mathematics of prime numbers: **RSA**.
 
-  A bank vault is locked with RSA encryption. The lock uses a large public number $N = p \times q$, where $p$ and $q$ are two secret prime numbers. It also uses the public exponent $e = 65537$. Normally, finding $p$ and $q$ from $N$ takes thousands of years.
-
-  However, an engineer made a simple mistake: they wrote down the **sum** of the two secret primes in a maintenance note!
-  
+  A digital gold bullion vault encrypts its transfer clearance codes with 512-bit RSA. But during a maintenance audit, a hardware leak exposed the exact sum of the two secret prime factors:
   $$S = p + q$$
 
-  With simple school algebra, you can find the two primes without breaking a sweat:
-  $$(p - q)^2 = (p + q)^2 - 4N = S^2 - 4N$$
+  Given the modulus $N = p \cdot q$ and the sum $S = p + q$, high school algebra tells us:
+  $$(p - q)^2 = (p + q)^2 - 4pq = S^2 - 4N$$
 
-  Using Python's `math.isqrt()`, you can find the difference $(p - q)$, uncover $p$ and $q$, and unlock the vault!
+  Can you crack the vault and withdraw the gold?
 
   ---
   **Attachments:** Download `rsa.txt` and `encrypt.py` below.
@@ -24,7 +21,7 @@ type: standard
 state: visible
 
 flags:
-  - "Roots{qu4dr4t1c_f0rmul4_br34ks_sum_rs4}"
+  - "flagfall{qu4dr4t1c_f0rmul4_br34ks_sum_rs4}"
 
 tags:
   - civilization
@@ -35,13 +32,13 @@ tags:
   - easy
 
 hints:
-  - content: "The bank thought the lock was unbreakable because N is huge. But knowing the sum S = p + q makes finding the secret primes easy with simple math: (p - q)^2 = S^2 - 4*N."
+  - content: "You know N = p*q and S = p+q. Use the identity (p - q)^2 = S^2 - 4*N. In Python, math.isqrt(S*S - 4*N) computes the exact integer square root."
     cost: 0
-  - content: "Find the difference between the primes: diff = math.isqrt(S * S - 4 * N). Then p = (S + diff) // 2 and q = S - p."
+  - content: "Let diff = math.isqrt(S*S - 4*N). Then p = (S + diff) // 2 and q = S - p."
     cost: 10
-  - content: "After finding p and q, compute phi = (p - 1) * (q - 1). Then find private key d = pow(e, -1, phi), and decrypt with m = pow(c, d, N). Finally, convert number m to text with bytes.fromhex(hex(m)[2:]).decode()."
+  - content: "Once you have p and q, compute phi = (p-1)*(q-1), private key d = pow(e, -1, phi), and flag = pow(c, d, N)."
     cost: 25
 
 files:
-  - rsa.txt
-  - encrypt.py
+  - "rsa.txt"
+  - "encrypt.py"

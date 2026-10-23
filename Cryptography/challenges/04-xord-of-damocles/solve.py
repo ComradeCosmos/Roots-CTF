@@ -1,9 +1,4 @@
 #!/usr/bin/env python3
-"""
-Solution script for Ep 04: The XORd of Damocles
-Cipher: LCG PRNG Stream Cipher (Brute-force 8-bit seed)
-"""
-
 def solve():
     with open("cipher.txt", "r") as f:
         hex_data = f.read().strip()
@@ -20,7 +15,7 @@ def solve():
             plain.append(b ^ state)
             state = (A * state + C) % MOD
 
-        if plain.startswith(b"Roots{"):
+        if plain.startswith(b"flagfall{"):
             flag = plain.decode("utf-8")
             print(f"[+] Found Seed: {guess_seed}")
             print(f"[+] Recovered Flag: {flag}")

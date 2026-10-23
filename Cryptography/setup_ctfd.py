@@ -29,14 +29,14 @@ CHALLENGES = [
             "<li>For <strong>odd</strong> positions <em>i</em> (1, 3, 5...): shift backward by <code>(i * 3 + 5) mod 37</code></li>"
             "</ul>"
             "<p><em>(The brackets <code>{</code> and <code>}</code> are not shifted. Capital letters keep their capital form).</em></p>"
-            "<pre>Ygxf3{pehxkqspkh8vyntf50h_qg1w}</pre>"
+            "<pre>mdj3qryw{hk2axbxihix4f4347wbdcsff}</pre>"
             "<p>Can you reverse the scratches and read the first message?</p>"
             "<hr><strong>Attachment:</strong> Download <code>cipher.txt</code> below."
         ),
         "value": 50,
         "type": "standard",
         "state": "visible",
-        "flags": ["Roots{c43s4r_w0uld_b3_c0nfus3d}"],
+        "flags": ["flagfall{c43s4r_w0uld_b3_c0nfus3d}"],
         "tags": ["civilization", "ancient-history", "classical-cipher", "base37", "easy"],
         "hints": [
             {"content": "The alphabet has 37 symbols in total: letters a to z, numbers 0 to 9, and the underscore '_'. Braces '{' and '}' stay where they are.", "cost": 0},
@@ -59,14 +59,14 @@ CHALLENGES = [
             "</ul>"
             "<p><code>K_i = Primer_i (i &lt; 5), K_i = P_{i-5} (i &gt;= 5)</code></p>"
             "<p>Because the key never repeats, each letter you solve unlocks the key for the next letter.</p>"
-            "<pre>Gofbk{rihhces_wspiyww_fm_pkgmxizbs}</pre>"
+            "<pre>ulroxfwl{gztzves_wspiyww_fm_pkgmxizbs}</pre>"
             "<p>Can you decrypt the messenger's letter?</p>"
             "<hr><strong>Attachment:</strong> Download <code>cipher.txt</code> below."
         ),
         "value": 100,
         "type": "standard",
         "state": "visible",
-        "flags": ["Roots{autokey_defeats_ai_prompting}"],
+        "flags": ["flagfall{autokey_defeats_ai_prompting}"],
         "tags": ["civilization", "messengers", "autokey", "dynamic-keystream", "easy"],
         "hints": [
             {"content": "The starting word 'PARIS' decrypts the first 5 letters. After that, each letter you uncover is added to the key list to unlock future letters.", "cost": 0},
@@ -87,14 +87,14 @@ CHALLENGES = [
             "<code>E(x) = (a * x + b) mod 37</code></p>"
             "<p>Because 37 is a prime number, every multiplier <code>a</code> from 1 to 36 has an exact reverse match (modular inverse).</p>"
             "<p>There are only <code>36 * 37 = 1,332</code> possible key pairs (a, b). A short Python script can test every single pair in less than a second!</p>"
-            "<pre>Z33k_{hntv7uzmuzyk0hjkyimy_m_vdjzynz}</pre>"
+            "<pre>e7xpex77{hntv7uzmuzyk0hjkyimy_m_vdjzynz}</pre>"
             "<p>Can you find the right keys and read the ledger?</p>"
             "<hr><strong>Attachments:</strong> Download <code>cipher.txt</code> and <code>affine.py</code> below."
         ),
         "value": 100,
         "type": "standard",
         "state": "visible",
-        "flags": ["Roots{m0dul4r_4r1thm3t1c_1s_sup3r10r}"],
+        "flags": ["flagfall{m0dul4r_4r1thm3t1c_1s_sup3r10r}"],
         "tags": ["civilization", "ancient-towns", "affine", "base37", "modular-arithmetic", "easy"],
         "hints": [
             {"content": "The alphabet has 37 symbols: letters a-z, numbers 0-9, and the underscore '_'. Braces '{' and '}' are not changed.", "cost": 0},
@@ -115,17 +115,17 @@ CHALLENGES = [
             "<code>C_i = P_i ^ S_i</code></p>"
             "<p>The entire machine was started with a single 8-bit seed number (<code>S_0</code>), which is just an integer between 0 and 255.</p>"
             "<p>Whoever built the machine thought 256 combinations was enough to keep the gates safe. Write a quick Python script to test all 256 starting seeds and unlock the sentry's message!</p>"
-            "<pre>Ciphertext (Hex): 78accb794d0c9462b5f4bc0788387f1a0ea780eed12e3b8e564b2c1a45424455a61e</pre>"
+            "<pre>Ciphertext (Hex): 4cafc56a5816946da9c7af12b92f52071dcc87a9ba337b8e4b084331061f2f4aa75728c1a3</pre>"
             "<hr><strong>Attachments:</strong> Download <code>cipher.txt</code> and <code>xor.py</code> below."
         ),
         "value": 150,
         "type": "standard",
         "state": "visible",
-        "flags": ["Roots{lcg_prng_st4t3_is_t00_sm4ll}"],
+        "flags": ["flagfall{lcg_prng_st4t3_is_t00_sm4ll}"],
         "tags": ["civilization", "ancient-empires", "symmetric", "prng", "lcg", "brute-force", "easy"],
         "hints": [
             {"content": "The clockwork steps through numbers using S_{i+1} = (137 * S_i + 73) mod 256. The seed S_0 is a single number from 0 to 255.", "cost": 0},
-            {"content": "You know the flag starts with 'Roots{'. Loop through all 256 possible seeds in Python and see which one decrypts to readable text.", "cost": 10},
+            {"content": "You know the flag starts with 'flagfall{'. Loop through all 256 possible seeds in Python and see which one decrypts to readable text.", "cost": 10},
             {"content": "The starting seed was 42. Generate the key numbers starting from 42 and XOR each byte with the ciphertext bytes.", "cost": 25}
         ],
         "dir": "04-xord-of-damocles",
@@ -150,12 +150,12 @@ CHALLENGES = [
         "value": 150,
         "type": "standard",
         "state": "visible",
-        "flags": ["Roots{tw0_t1m3_p4d_c4n_n3v3r_b3_s4f3}"],
+        "flags": ["flagfall{tw0_t1m3_p4d_c4n_n3v3r_b3_s4f3}"],
         "tags": ["civilization", "telegraph", "stream-cipher", "otp", "key-reuse", "two-time-pad", "easy"],
         "hints": [
             {"content": "A One-Time Pad is only secure if the key is never reused. When key K is reused: C1 ^ C2 = P1 ^ P2.", "cost": 0},
             {"content": "You know the first 22 characters of Message 1 are 'OPERATION CIPHERFALL: '. XORing this known text with Ciphertext 1 reveals the first 22 bytes of the key!", "cost": 10},
-            {"content": "XOR C1[:22] with b'OPERATION CIPHERFALL: ' reveals 'Roots{tw0_t1m3_p4d_c4'. Complete message 1 is 'OPERATION CIPHERFALL: AGENT VANCE ESCAPED VIA SECTOR 04!'.", "cost": 25}
+            {"content": "XOR C1[:22] with b'OPERATION CIPHERFALL: ' reveals 'flagfall{tw0_t1m3_p4d_c4'. Complete message 1 is 'OPERATION CIPHERFALL: AGENT VANCE ESCAPED VIA SECTOR 04!'.", "cost": 25}
         ],
         "dir": "05-double-agent-otp",
         "files": ["ciphertexts.txt", "encrypt.py"]
@@ -175,14 +175,14 @@ CHALLENGES = [
             "</ul>"
             "<p>Once Alice found her secret number <em>a</em>, the satellites computed their shared secret number: <code>S = B^a mod p</code></p>"
             "<p>They converted S to text and hashed it with SHA-256 to create the encryption key: <code>Key = SHA256(str(S))</code></p>"
-            "<pre>Encrypted Flag (Hex) = e8b0b0ee8118a4d6798cb4250c440a0be36b4c5f12ab10fca062f1a3471946a189bba2</pre>"
+            "<pre>Encrypted Flag (Hex) = dcb3befd9402acd25d8ced090b074a1ca207545c2a9842e98a74b089551a6ba48aadbca9961e</pre>"
             "<p>Because p = 19997 is small, you can find Alice's secret number <em>a</em> with a simple Python loop from 1 to 19997!</p>"
             "<hr><strong>Attachments:</strong> Download <code>params.txt</code> and <code>dh.py</code> below."
         ),
         "value": 200,
         "type": "standard",
         "state": "visible",
-        "flags": ["Roots{dh_d1scr3t3_l0g_brut3_f0rc3d}"],
+        "flags": ["flagfall{dh_d1scr3t3_l0g_brut3_f0rc3d}"],
         "tags": ["civilization", "space-satellites", "asymmetric", "diffie-hellman", "discrete-log", "sha256", "easy"],
         "hints": [
             {"content": "Alice computed A = pow(5, a, 19997) == 2058. Loop through all numbers a from 1 to 19997 in Python until you find the match.", "cost": 0},
@@ -207,7 +207,7 @@ CHALLENGES = [
         "value": 200,
         "type": "standard",
         "state": "visible",
-        "flags": ["Roots{qu4dr4t1c_f0rmul4_br34ks_sum_rs4}"],
+        "flags": ["flagfall{qu4dr4t1c_f0rmul4_br34ks_sum_rs4}"],
         "tags": ["civilization", "digital-banking", "asymmetric", "rsa", "quadratic-formula", "easy"],
         "hints": [
             {"content": "The bank thought the lock was unbreakable because N is huge. But knowing the sum S = p + q makes finding the secret primes easy with simple math: (p - q)^2 = S^2 - 4*N.", "cost": 0},
@@ -238,7 +238,7 @@ CHALLENGES = [
         "value": 250,
         "type": "standard",
         "state": "visible",
-        "flags": ["Roots{spn_n1bbl3_sw4p_d3f34ts_llm}"],
+        "flags": ["flagfall{spn_n1bbl3_sw4p_d3f34ts_llm}"],
         "tags": ["civilization", "internet", "block-cipher", "spn", "s-box", "easy"],
         "hints": [
             {"content": "Because the cipher only ran for 1 round, you can decrypt the message by running the 4 steps backwards.", "cost": 0},

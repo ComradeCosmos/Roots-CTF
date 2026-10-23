@@ -1,5 +1,5 @@
 name: "Civilization: The Firekeeper's Bone"
-author: "Civilization CTF"
+author: "FlagFall CTF"
 category: "Cryptography"
 description: >
   ### Historical Story: The Dawn of Writing
@@ -16,7 +16,7 @@ description: >
   *(The brackets `{` and `}` are not shifted. Capital letters keep their capital form).*
 
   ```
-  Ygxf3{pehxkqspkh8vyntf50h_qg1w}
+  mdj3qryw{hk2axbxihix4f4347wbdcsff}
   ```
 
   Can you reverse the scratches and read the first message?
@@ -28,7 +28,7 @@ type: standard
 state: visible
 
 flags:
-  - "Roots{c43s4r_w0uld_b3_c0nfus3d}"
+  - "flagfall{c43s4r_w0uld_b3_c0nfus3d}"
 
 tags:
   - civilization
@@ -46,4 +46,4 @@ hints:
     cost: 25
 
 files:
-  - cipher.txt
+  - "cipher.txt"

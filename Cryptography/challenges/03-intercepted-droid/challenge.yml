@@ -1,25 +1,26 @@
 name: "Civilization: The Granary Ledger"
-author: "Civilization CTF"
+author: "FlagFall CTF"
 category: "Cryptography"
 description: >
-  ### Historical Story: The First Walled Towns
+  ### Historical Story: The First Numbers and Trade
 
-  People started living together in towns. Towns needed trust — so they built walls, made promises, and kept records of who owed what to whom.
+  Civilization flourished when humans learned mathematics to build granaries, divide harvests, and measure city walls. The Babylonians and Greeks turned arithmetic into art.
 
-  In the ruins of an ancient town's grain storehouse, you find an old tax record carved on a clay tablet. The town accountant scrambled the message using a simple math rule over a 37-symbol alphabet:
-  
-  $$\text{Alphabet: } \texttt{abcdefghijklmnopqrstuvwxyz0123456789\_} \quad (m = 37)$$
+  You discover a preserved stone tax ledger from an ancient merchant guild. The scribes encrypted their balances using a modular transformation over their 37-character alphabet:
+  `abcdefghijklmnopqrstuvwxyz0123456789_`
+
+  Formula:
   $$E(x) = (a \cdot x + b) \pmod{37}$$
 
-  Because 37 is a prime number, every multiplier $a$ from 1 to 36 has an exact reverse match (modular inverse).
-
-  There are only $36 \times 37 = 1,332$ possible key pairs $(a, b)$. A short Python script can test every single pair in less than a second!
+  Where:
+  - $x$ is the symbol's index $(0 \le x < 37)$
+  - $a$ and $b$ are secret keys $(1 \le a < 37,\ 0 \le b < 37)$
 
   ```
-  Z33k_{hntv7uzmuzyk0hjkyimy_m_vdjzynz}
+  e7xpex77{hntv7uzmuzyk0hjkyimy_m_vdjzynz}
   ```
 
-  Can you find the right keys and read the ledger?
+  Can you compute the modular inverse and balance the ancient books?
 
   ---
   **Attachments:** Download `cipher.txt` and `affine.py` below.
@@ -28,7 +29,7 @@ type: standard
 state: visible
 
 flags:
-  - "Roots{m0dul4r_4r1thm3t1c_1s_sup3r10r}"
+  - "flagfall{m0dul4r_4r1thm3t1c_1s_sup3r10r}"
 
 tags:
   - civilization
@@ -39,13 +40,13 @@ tags:
   - easy
 
 hints:
-  - content: "The alphabet has 37 symbols: letters a-z, numbers 0-9, and the underscore '_'. Braces '{' and '}' are not changed."
+  - content: "Since 37 is prime, every 'a' from 1 to 36 has a unique modular inverse. The total key space is only 36 * 37 = 1,332 possible keys."
     cost: 0
-  - content: "Because 37 is prime, every number a from 1 to 36 can be inverted with Python: a_inv = pow(a, -1, 37). Loop through all 1,332 combinations of a and b."
+  - content: "To decrypt: D(y) = (a^(-1) * (y - b)) mod 37. In Python, compute the modular inverse with pow(a, -1, 37)."
     cost: 10
-  - content: "The secret keys are a = 11 and b = 23. Invert it using pow(11, -1, 37) = 27: calculate x = (27 * (y - 23)) % 37 for each character."
+  - content: "A quick Python loop testing all 1,332 pairs will instantly find the readable flag starting with 'flagfall{'."
     cost: 25
 
 files:
-  - cipher.txt
-  - affine.py
+  - "cipher.txt"
+  - "affine.py"

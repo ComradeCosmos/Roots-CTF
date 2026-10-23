@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 echo "==================================================="
-echo "  RootsCTF / Civilization - CTFd Server Launcher"
+echo "  FlagFall / Civilization - CTFd Server Launcher"
 echo "==================================================="
 echo ""
 cd CTFd

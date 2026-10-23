@@ -1,6 +1,6 @@
-# RootsCTF — Civilization CTF Platform
+# FlagFall — Civilization CTF Platform
 
-A turnkey, production-ready [CTFd](https://ctfd.io/) instance pre-configured for the **RootsCTF: Civilization** competition.
+A turnkey, production-ready [CTFd](https://ctfd.io/) instance pre-configured for the **FlagFall: Civilization** competition.
 
 ---
 
@@ -16,12 +16,12 @@ A turnkey, production-ready [CTFd](https://ctfd.io/) instance pre-configured for
   - **Toolbox Zoom & Restore**: Box-zoom into specific time intervals, step-back undo, and a dedicated **Reset Zoom** (`restore`) button.
   - Calibrated grid positioning (`top: 95px`, slider at `top: 38px`) so the zoom slider never collides with score lines or data points.
 - **Pre-Configured Database (`ctfd.db`)**:
-  - Competition name (`RootsCTF`), team mode, and public scoreboard pre-configured.
+  - Competition name (`FlagFall`), team mode, and public scoreboard pre-configured.
   - Custom Charcoal & Emerald theme and transparent logo embedded.
   - Challenge review, scoring, and rating systems enabled.
   - Fresh scoreboard with zero prior test submissions or user solves.
 - **Cryptography Challenge Suite (`Cryptography/`)**:
-  - Full set of civilization-themed challenges with position-dependent ciphers, historical narratives, hints, flag keys (`Roots{...}`), and automated setup script (`setup_ctfd.py`).
+  - Full set of civilization-themed challenges with position-dependent ciphers, historical narratives, hints, flag keys (`flagfall{...}`), and automated setup script (`setup_ctfd.py`).
 
 ---
 

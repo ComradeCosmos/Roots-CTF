@@ -1,25 +1,25 @@
 name: "Civilization: The Connected World"
-author: "Civilization CTF"
+author: "FlagFall CTF"
 category: "Cryptography"
 description: >
-  ### Historical Story: The Global Internet
+  ### Historical Story: Modern Cyber Networks & Block Ciphers
 
-  Today, everything in human civilization is connected. Phones, computers, and servers all talk across thousands of miles of glass fiber cables.
+  In the 21st century, billions of smartphones, fiber-optic backbones, and server farms connect human civilization into a single global consciousness. Modern security relies on Substitution-Permutation Networks (SPN) like AES.
 
-  To send data quickly, network engineers built an encryption program that scrambles messages in four steps:
-  1. Add round key 0 (using XOR)
-  2. Replace each byte using a lookup table (S-Box)
-  3. Swap the first 4 bits and last 4 bits of each byte (nibble swap)
-  4. Add round key 1 (using XOR)
+  An advanced network firewall uses a lightweight custom SPN cipher with the standard AES S-Box and bitwise nibble permutations.
 
-  Real modern ciphers (like AES) repeat these steps 10 or more times to keep data safe. But to make this network run faster, the engineers only ran the steps **one single time**!
+  The encryption executes **only 1 round**:
+  1. $\text{State}_A = \text{Plaintext} \oplus \text{RoundKey}_0$
+  2. $\text{State}_B = \text{SubBytes}(\text{State}_A)$ (AES S-Box)
+  3. $\text{State}_C = \text{NibbleSwap}(\text{State}_B)$
+  4. $\text{Ciphertext} = \text{State}_C \oplus \text{RoundKey}_1$
 
-  Because it only ran once, you can undo each step one by one in reverse order to read the secret message.
-
+  Intercepted encrypted transmission:
   ```
-  Ciphertext (Hex):
-  62dbb47b113127aea76c43ce3d8ec1ad5dfd3ec1f09d944cc17ff934150bc10f63a8
+  0d1c145bd240431e7e104690697ba290cc1cb7ca11114eaee3a363ee7a4ad4315d1c04cebf
   ```
+
+  Can you trace the single round backward to reach the core?
 
   ---
   **Attachments:** Download `cipher.txt` and `chall.py` below.
@@ -28,7 +28,7 @@ type: standard
 state: visible
 
 flags:
-  - "Roots{spn_n1bbl3_sw4p_d3f34ts_llm}"
+  - "flagfall{spn_n1bbl3_sw4p_d3f34ts_llm}"
 
 tags:
   - civilization
@@ -39,13 +39,13 @@ tags:
   - easy
 
 hints:
-  - content: "Because the cipher only ran for 1 round, you can decrypt the message by running the 4 steps backwards."
+  - content: "A single SPN round provides zero long-term security. Every operation (XOR, S-Box, Nibble Swap) is 100% invertible in reverse order."
     cost: 0
-  - content: "Swapping the first and last 4 bits of a byte twice puts it right back to normal. So swapping is its own reverse!"
+  - content: "Swapping nibbles twice returns the original byte: swap_nibbles(swap_nibbles(b)) == b."
     cost: 10
-  - content: "Decryption steps: 1) XOR ciphertext with ROUND_KEY_1. 2) Swap nibbles on each byte. 3) Reverse the S-Box lookup: INV_SBOX = {SBOX[i]: i for i in range(256)}. 4) XOR with ROUND_KEY_0."
+  - content: "Step 1: XOR ciphertext with RoundKey1. Step 2: Swap nibbles. Step 3: Invert AES S-Box using an inverse lookup table. Step 4: XOR with RoundKey0."
     cost: 25
 
 files:
-  - cipher.txt
-  - chall.py
+  - "cipher.txt"
+  - "chall.py"

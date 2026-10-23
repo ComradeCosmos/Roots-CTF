@@ -1,27 +1,23 @@
 name: "Civilization: The Vanguard Satellite"
-author: "Civilization CTF"
+author: "FlagFall CTF"
 category: "Cryptography"
 description: >
-  ### Historical Story: The Early Space Age
+  ### Historical Story: The Space Race & Satellite Comms
 
-  In the 20th century, civilization reached into space. Two scientific satellites orbiting on opposite sides of Earth needed to agree on a secret key over open radio signals without enemy ground stations stealing it.
+  In the 1960s, humanity reached orbit. Satellites orbited the globe, creating the modern global communication grid. To negotiate cryptographic keys across open space, Whitfield Diffie and Martin Hellman introduced **Public Key Cryptography**.
 
-  They used the **Diffie-Hellman Key Exchange** with small numbers:
-  - Prime modulus: $p = 19997$
-  - Base number: $g = 5$
-  - Alice public key: $A = 2058$ ($g^a \pmod{p}$)
-  - Bob public key: $B = 5125$ ($g^b \pmod{p}$)
+  A vintage scientific satellite orbits above, exchanging telemetry with mission control over a prime field $GF(p)$:
+  - Prime modulus $p = 19997$
+  - Base generator $g = 5$
+  - Ground Station Public Key $A = 2058$ ($g^a \pmod p$)
+  - Satellite Public Key $B = 5125$ ($g^b \pmod p$)
 
-  Once Alice found her secret number $a$, the satellites computed their shared secret number:
-  $$S = B^a \pmod{p}$$
-  
-  They converted $S$ to text and hashed it with SHA-256 to create the encryption key: $\text{Key} = \text{SHA256}(\text{str}(S))$.
-
+  The satellite computed shared secret $S = B^a \pmod p$, derived an AES key via $\text{SHA-256}(\text{str}(S))$, and encrypted its mission payload:
   ```
-  Encrypted Flag (Hex) = e8b0b0ee8118a4d6798cb4250c440a0be36b4c5f12ab10fca062f1a3471946a189bba2
+  dcb3befd9402acd25d8ced090b074a1ca207545c2a9842e98a74b089551a6ba48aadbca9961e
   ```
 
-  Because $p = 19997$ is small, you can find Alice's secret number $a$ with a simple Python loop from 1 to 19997!
+  Can you compute the discrete logarithm and intercept the transmission?
 
   ---
   **Attachments:** Download `params.txt` and `dh.py` below.
@@ -30,7 +26,7 @@ type: standard
 state: visible
 
 flags:
-  - "Roots{dh_d1scr3t3_l0g_brut3_f0rc3d}"
+  - "flagfall{dh_d1scr3t3_l0g_brut3_f0rc3d}"
 
 tags:
   - civilization
@@ -42,13 +38,13 @@ tags:
   - easy
 
 hints:
-  - content: "Alice computed A = pow(5, a, 19997) == 2058. Loop through all numbers a from 1 to 19997 in Python until you find the match."
+  - content: "The prime modulus is only 19,997. Find Alice's secret exponent 'a' in under 0.05 seconds by looping from 1 to 19,997 and checking pow(5, a, 19997) == 2058."
     cost: 0
-  - content: "Once you have Alice's secret a, calculate shared secret S = pow(B, a, p). Turn S into bytes: key = hashlib.sha256(str(S).encode()).digest()."
+  - content: "Once you have 'a', compute shared secret S = pow(B, a, p). Then compute key = hashlib.sha256(str(S).encode('utf-8')).digest()."
     cost: 10
-  - content: "Alice's secret is a = 13371, giving S = 18857. XOR the encrypted hex bytes with hashlib.sha256(b'18857').digest()."
+  - content: "Alice's secret is a = 13371, and the shared secret is S = 18857."
     cost: 25
 
 files:
-  - params.txt
-  - dh.py
+  - "params.txt"
+  - "dh.py"

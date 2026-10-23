@@ -1,6 +1,6 @@
 @echo off
 echo ===================================================
-echo   RootsCTF / Civilization - CTFd Server Launcher
+echo   FlagFall / Civilization - CTFd Server Launcher
 echo ===================================================
 echo.
 echo Navigating to CTFd directory...
