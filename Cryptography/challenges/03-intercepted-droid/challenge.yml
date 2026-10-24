@@ -31,13 +31,7 @@ state: visible
 flags:
   - "flagfall{m0dul4r_4r1thm3t1c_1s_sup3r10r}"
 
-tags:
-  - civilization
-  - ancient-towns
-  - affine
-  - base37
-  - modular-arithmetic
-  - easy
+tags: []
 
 hints:
   - content: "Since 37 is prime, every 'a' from 1 to 36 has a unique modular inverse. The total key space is only 36 * 37 = 1,332 possible keys."

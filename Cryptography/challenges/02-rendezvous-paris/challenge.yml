@@ -24,12 +24,7 @@ state: visible
 flags:
   - "flagfall{autokey_defeats_ai_prompting}"
 
-tags:
-  - civilization
-  - messengers
-  - autokey
-  - dynamic-keystream
-  - easy
+tags: []
 
 hints:
   - content: "The primer word is 'PARIS'. The first 5 encrypted letters use P-A-R-I-S as the key. Each decrypted letter then becomes the key for the subsequent letters!"

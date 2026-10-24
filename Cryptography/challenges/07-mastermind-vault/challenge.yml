@@ -23,13 +23,7 @@ state: visible
 flags:
   - "flagfall{qu4dr4t1c_f0rmul4_br34ks_sum_rs4}"
 
-tags:
-  - civilization
-  - digital-banking
-  - asymmetric
-  - rsa
-  - quadratic-formula
-  - easy
+tags: []
 
 hints:
   - content: "You know N = p*q and S = p+q. Use the identity (p - q)^2 = S^2 - 4*N. In Python, math.isqrt(S*S - 4*N) computes the exact integer square root."

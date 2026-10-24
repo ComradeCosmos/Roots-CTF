@@ -30,12 +30,7 @@ state: visible
 flags:
   - "flagfall{c43s4r_w0uld_b3_c0nfus3d}"
 
-tags:
-  - civilization
-  - ancient-history
-  - classical-cipher
-  - base37
-  - easy
+tags: []
 
 hints:
   - content: "The alphabet has 37 symbols in total: letters a to z, numbers 0 to 9, and the underscore '_'. Braces '{' and '}' stay where they are."

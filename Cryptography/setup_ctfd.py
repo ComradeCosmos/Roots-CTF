@@ -37,7 +37,7 @@ CHALLENGES = [
         "type": "standard",
         "state": "visible",
         "flags": ["flagfall{c43s4r_w0uld_b3_c0nfus3d}"],
-        "tags": ["civilization", "ancient-history", "classical-cipher", "base37", "easy"],
+        "tags": [],
         "hints": [
             {"content": "The alphabet has 37 symbols in total: letters a to z, numbers 0 to 9, and the underscore '_'. Braces '{' and '}' stay where they are.", "cost": 0},
             {"content": "To undo the shift at position i: if i is even, subtract (i + 7) mod 37. If i is odd, add (i * 3 + 5) mod 37.", "cost": 10},
@@ -67,7 +67,7 @@ CHALLENGES = [
         "type": "standard",
         "state": "visible",
         "flags": ["flagfall{autokey_defeats_ai_prompting}"],
-        "tags": ["civilization", "messengers", "autokey", "dynamic-keystream", "easy"],
+        "tags": [],
         "hints": [
             {"content": "The starting word 'PARIS' decrypts the first 5 letters. After that, each letter you uncover is added to the key list to unlock future letters.", "cost": 0},
             {"content": "Characters like '{', '_', and '}' are left alone and skipped by the key. Decrypt one letter at a time from left to right.", "cost": 10},
@@ -95,7 +95,7 @@ CHALLENGES = [
         "type": "standard",
         "state": "visible",
         "flags": ["flagfall{m0dul4r_4r1thm3t1c_1s_sup3r10r}"],
-        "tags": ["civilization", "ancient-towns", "affine", "base37", "modular-arithmetic", "easy"],
+        "tags": [],
         "hints": [
             {"content": "The alphabet has 37 symbols: letters a-z, numbers 0-9, and the underscore '_'. Braces '{' and '}' are not changed.", "cost": 0},
             {"content": "Because 37 is prime, every number a from 1 to 36 can be inverted with Python: a_inv = pow(a, -1, 37). Loop through all 1,332 combinations of a and b.", "cost": 10},
@@ -122,7 +122,7 @@ CHALLENGES = [
         "type": "standard",
         "state": "visible",
         "flags": ["flagfall{lcg_prng_st4t3_is_t00_sm4ll}"],
-        "tags": ["civilization", "ancient-empires", "symmetric", "prng", "lcg", "brute-force", "easy"],
+        "tags": [],
         "hints": [
             {"content": "The clockwork steps through numbers using S_{i+1} = (137 * S_i + 73) mod 256. The seed S_0 is a single number from 0 to 255.", "cost": 0},
             {"content": "You know the flag starts with 'flagfall{'. Loop through all 256 possible seeds in Python and see which one decrypts to readable text.", "cost": 10},
@@ -151,7 +151,7 @@ CHALLENGES = [
         "type": "standard",
         "state": "visible",
         "flags": ["flagfall{tw0_t1m3_p4d_c4n_n3v3r_b3_s4f3}"],
-        "tags": ["civilization", "telegraph", "stream-cipher", "otp", "key-reuse", "two-time-pad", "easy"],
+        "tags": [],
         "hints": [
             {"content": "A One-Time Pad is only secure if the key is never reused. When key K is reused: C1 ^ C2 = P1 ^ P2.", "cost": 0},
             {"content": "You know the first 22 characters of Message 1 are 'OPERATION CIPHERFALL: '. XORing this known text with Ciphertext 1 reveals the first 22 bytes of the key!", "cost": 10},
@@ -183,7 +183,7 @@ CHALLENGES = [
         "type": "standard",
         "state": "visible",
         "flags": ["flagfall{dh_d1scr3t3_l0g_brut3_f0rc3d}"],
-        "tags": ["civilization", "space-satellites", "asymmetric", "diffie-hellman", "discrete-log", "sha256", "easy"],
+        "tags": [],
         "hints": [
             {"content": "Alice computed A = pow(5, a, 19997) == 2058. Loop through all numbers a from 1 to 19997 in Python until you find the match.", "cost": 0},
             {"content": "Once you find Alice's secret number a, compute the shared secret S = pow(B, a, p). Then compute key = hashlib.sha256(str(S).encode()).digest().", "cost": 10},
@@ -208,7 +208,7 @@ CHALLENGES = [
         "type": "standard",
         "state": "visible",
         "flags": ["flagfall{qu4dr4t1c_f0rmul4_br34ks_sum_rs4}"],
-        "tags": ["civilization", "digital-banking", "asymmetric", "rsa", "quadratic-formula", "easy"],
+        "tags": [],
         "hints": [
             {"content": "The bank thought the lock was unbreakable because N is huge. But knowing the sum S = p + q makes finding the secret primes easy with simple math: (p - q)^2 = S^2 - 4*N.", "cost": 0},
             {"content": "Find the difference between the primes: diff = math.isqrt(S * S - 4 * N). Then p = (S + diff) // 2 and q = S - p.", "cost": 10},
@@ -239,7 +239,7 @@ CHALLENGES = [
         "type": "standard",
         "state": "visible",
         "flags": ["flagfall{spn_n1bbl3_sw4p_d3f34ts_llm}"],
-        "tags": ["civilization", "internet", "block-cipher", "spn", "s-box", "easy"],
+        "tags": [],
         "hints": [
             {"content": "Because the cipher only ran for 1 round, you can decrypt the message by running the 4 steps backwards.", "cost": 0},
             {"content": "Swapping the first and last 4 bits of a byte twice puts it right back to normal. So swapping is its own reverse!", "cost": 10},

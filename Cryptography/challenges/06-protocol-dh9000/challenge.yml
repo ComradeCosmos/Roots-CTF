@@ -28,14 +28,7 @@ state: visible
 flags:
   - "flagfall{dh_d1scr3t3_l0g_brut3_f0rc3d}"
 
-tags:
-  - civilization
-  - space-satellites
-  - asymmetric
-  - diffie-hellman
-  - discrete-log
-  - sha256
-  - easy
+tags: []
 
 hints:
   - content: "The prime modulus is only 19,997. Find Alice's secret exponent 'a' in under 0.05 seconds by looping from 1 to 19,997 and checking pow(5, a, 19997) == 2058."

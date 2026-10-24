@@ -30,13 +30,7 @@ state: visible
 flags:
   - "flagfall{spn_n1bbl3_sw4p_d3f34ts_llm}"
 
-tags:
-  - civilization
-  - internet
-  - block-cipher
-  - spn
-  - s-box
-  - easy
+tags: []
 
 hints:
   - content: "A single SPN round provides zero long-term security. Every operation (XOR, S-Box, Nibble Swap) is 100% invertible in reverse order."

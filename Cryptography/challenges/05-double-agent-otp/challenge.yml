@@ -26,14 +26,7 @@ state: visible
 flags:
   - "flagfall{tw0_t1m3_p4d_c4n_n3v3r_b3_s4f3}"
 
-tags:
-  - civilization
-  - telegraph
-  - stream-cipher
-  - otp
-  - key-reuse
-  - two-time-pad
-  - easy
+tags: []
 
 hints:
   - content: "When a One-Time Pad key is reused, XORing the two ciphertexts cancels the key: C1 ^ C2 = P1 ^ P2."

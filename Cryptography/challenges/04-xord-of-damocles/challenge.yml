@@ -30,14 +30,7 @@ state: visible
 flags:
   - "flagfall{lcg_prng_st4t3_is_t00_sm4ll}"
 
-tags:
-  - civilization
-  - ancient-empires
-  - symmetric
-  - prng
-  - lcg
-  - brute-force
-  - easy
+tags: []
 
 hints:
   - content: "The seed space is only 1 byte (0 to 255). An 8-bit state means there are only 256 possible keystreams in the entire universe!"
