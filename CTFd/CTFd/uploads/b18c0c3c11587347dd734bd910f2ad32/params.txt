@@ -1,0 +1,10 @@
+Diffie-Hellman Group Parameters:
+p = 19997
+g = 5
+
+Public Keys:
+A = 2058 (Alice's Public Key)
+B = 5125 (Bob's Public Key)
+
+Encrypted Transmission (Hex):
+dcb3befd9402acd25d8ced090b074a1ca207545c2a9842e98a74b089551a6ba48aadbca9961e

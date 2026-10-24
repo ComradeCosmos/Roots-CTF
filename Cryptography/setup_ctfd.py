@@ -141,8 +141,8 @@ CHALLENGES = [
             "<p>When a key is reused:<br><code>C1 ^ C2 = P1 ^ P2</code></p>"
             "<p>Standard operational alerts on this telegraph line always begin with the known header prefix: <code>OPERATION CIPHERFALL: </code></p>"
             "<pre>"
-            "Ciphertext 1 (Hex):\n1d3f2a26322f3d387e7f37783d7b1a227225132f0e4e1e297638675209237d1c361423603e133f2a30532d3d36100c3172397c0d5004507e\n\n"
-            "Ciphertext 2 (Hex):\n112022393235305773103a7724611235705e7f2f7b2d144e7739643c7f237f1353642361341f2a3b31215b353e62133b722613183160217e"
+            "Ciphertext 1 (Hex):\n293c243527352523355434790f3c743f751e3c785e7f22732b113a1320723c1c27131a2077276338224c372e27413f29382038627f44054c\n\n"
+            "Ciphertext 2 (Hex):\n25232c2a272f284c383b397616267c28776550782b1c28142a10397d56723e1342631a217d2b7629233e41262f332023383f57771e20744c"
             "</pre>"
             "<p>Use XOR with the known starting words to reveal the key and uncover the secret messages!</p>"
             "<hr><strong>Attachments:</strong> Download <code>ciphertexts.txt</code> and <code>encrypt.py</code> below."
@@ -232,7 +232,7 @@ CHALLENGES = [
             "</ol>"
             "<p>Real modern ciphers (like AES) repeat these steps 10 or more times to keep data safe. But to make this network run faster, the engineers only ran the steps <strong>one single time</strong>!</p>"
             "<p>Because it only ran once, you can undo each step one by one in reverse order to read the secret message.</p>"
-            "<pre>Ciphertext (Hex): 62dbb47b113127aea76c43ce3d8ec1ad5dfd3ec1f09d944cc17ff934150bc10f63a8</pre>"
+            "<pre>Ciphertext (Hex): 0d1c145bd240431e7e104690697ba290cc1cb7ca11114eaee3a363ee7a4ad4315d1c04cebf</pre>"
             "<hr><strong>Attachments:</strong> Download <code>cipher.txt</code> and <code>chall.py</code> below."
         ),
         "value": 250,
